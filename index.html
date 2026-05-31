@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>李雪涛 · 个人主页 | 多模态大模型 · 具身智能 · VLA</title>
+<meta name="description" content="李雪涛，武汉大学计算机学院电子信息（具身智能）博士在读，专注多模态大模型、具身智能与视觉-语言-动作(VLA)机器人算法研究。" />
+<style>
+  :root {
+    --bg: #0b1020;
+    --bg-soft: #111831;
+    --card: rgba(255, 255, 255, 0.04);
+    --card-border: rgba(255, 255, 255, 0.09);
+    --text: #e8ecf5;
+    --muted: #99a3bd;
+    --accent: #6c8cff;
+    --accent-2: #44d7c4;
+    --accent-3: #b07cff;
+    --glow: rgba(108, 140, 255, 0.35);
+    --radius: 18px;
+    --maxw: 1100px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Animated background */
+  .bg-orbs { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
+  .orb {
+    position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.45;
+    animation: float 18s ease-in-out infinite;
+  }
+  .orb.a { width: 480px; height: 480px; background: #3b54d6; top: -120px; left: -100px; }
+  .orb.b { width: 420px; height: 420px; background: #1c8d7e; bottom: -120px; right: -80px; animation-delay: -6s; }
+  .orb.c { width: 380px; height: 380px; background: #7a45c9; top: 40%; left: 55%; animation-delay: -12s; }
+  @keyframes float {
+    0%,100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(40px,-40px) scale(1.08); }
+    66% { transform: translate(-30px,30px) scale(0.95); }
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(14px);
+    background: rgba(11, 16, 32, 0.7);
+    border-bottom: 1px solid var(--card-border);
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand { font-weight: 700; font-size: 18px; letter-spacing: 0.5px; }
+  .brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 26px; }
+  .nav-links a { color: var(--muted); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .menu-btn { display: none; background: none; border: none; color: var(--text); font-size: 22px; cursor: pointer; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* Hero */
+  header.hero { padding: 90px 0 70px; }
+  .hero-grid { display: grid; grid-template-columns: 1fr 300px; gap: 48px; align-items: center; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--accent-2); font-weight: 600;
+    border: 1px solid rgba(68, 215, 196, 0.3); padding: 6px 14px; border-radius: 999px;
+    background: rgba(68, 215, 196, 0.07); margin-bottom: 20px;
+  }
+  .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-2); box-shadow: 0 0 0 0 var(--accent-2); animation: pulse 2s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(68,215,196,0.6);} 70%{ box-shadow: 0 0 0 10px rgba(68,215,196,0);} 100%{box-shadow:0 0 0 0 rgba(68,215,196,0);} }
+  h1 { font-size: 52px; line-height: 1.1; font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; }
+  h1 .grad {
+    background: linear-gradient(120deg, var(--accent), var(--accent-2), var(--accent-3));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .subtitle { font-size: 19px; color: var(--muted); margin-bottom: 26px; max-width: 560px; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+  .tag {
+    font-size: 13px; padding: 7px 14px; border-radius: 10px;
+    background: var(--card); border: 1px solid var(--card-border); color: var(--text);
+  }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 22px; border-radius: 12px; font-weight: 600; font-size: 15px;
+    transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: none;
+  }
+  .btn-primary { background: linear-gradient(120deg, var(--accent), var(--accent-3)); color: #fff; box-shadow: 0 10px 30px var(--glow); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 38px var(--glow); }
+  .btn-ghost { background: var(--card); border: 1px solid var(--card-border); color: var(--text); }
+  .btn-ghost:hover { transform: translateY(-2px); border-color: var(--accent); }
+
+  .avatar-wrap { display: flex; justify-content: center; }
+  .avatar {
+    width: 240px; height: 240px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 86px; font-weight: 800; color: #fff;
+    box-shadow: 0 20px 60px var(--glow); position: relative;
+  }
+  .avatar::after {
+    content: ""; position: absolute; inset: -10px; border-radius: 50%;
+    border: 1px dashed rgba(255,255,255,0.25); animation: spin 22s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 56px; }
+  .stat {
+    background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius);
+    padding: 22px; text-align: center;
+  }
+  .stat .num { font-size: 34px; font-weight: 800; background: linear-gradient(120deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .stat .lbl { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* Sections */
+  section { padding: 70px 0; }
+  .sec-head { margin-bottom: 40px; }
+  .sec-tag { font-size: 13px; font-weight: 700; color: var(--accent-2); letter-spacing: 2px; text-transform: uppercase; }
+  .sec-title { font-size: 34px; font-weight: 800; margin-top: 8px; letter-spacing: -0.5px; }
+  .sec-sub { color: var(--muted); margin-top: 8px; max-width: 680px; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius);
+    padding: 26px; transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  }
+  .card:hover { transform: translateY(-4px); border-color: rgba(108,140,255,0.5); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+
+  /* Highlights */
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .hl-icon { font-size: 28px; margin-bottom: 12px; }
+  .card h3 { font-size: 19px; margin-bottom: 10px; }
+  .card p { color: var(--muted); font-size: 15px; }
+
+  /* Timeline (education) */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ""; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(var(--accent), var(--accent-3)); }
+  .tl-item { position: relative; margin-bottom: 28px; }
+  .tl-item::before { content: ""; position: absolute; left: -32px; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 3px solid var(--accent); }
+  .tl-when { font-size: 13px; color: var(--accent-2); font-weight: 600; }
+  .tl-title { font-size: 18px; font-weight: 700; margin: 4px 0; }
+  .tl-org { color: var(--muted); font-size: 14px; }
+  .tl-desc { color: var(--muted); font-size: 14px; margin-top: 6px; }
+
+  /* Skills */
+  .skill-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .skill-block h4 { font-size: 16px; margin-bottom: 14px; color: var(--text); display: flex; align-items: center; gap: 8px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { font-size: 13px; padding: 6px 12px; border-radius: 8px; background: rgba(108,140,255,0.1); border: 1px solid rgba(108,140,255,0.25); color: #cdd6f0; }
+
+  /* Publications */
+  .pub-filters { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
+  .filter-btn { font-size: 13px; padding: 7px 16px; border-radius: 999px; background: var(--card); border: 1px solid var(--card-border); color: var(--muted); cursor: pointer; transition: all 0.2s; }
+  .filter-btn.active, .filter-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .pub-list { display: flex; flex-direction: column; gap: 14px; }
+  .pub {
+    display: flex; gap: 18px; align-items: flex-start;
+    background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; padding: 20px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .pub:hover { border-color: rgba(108,140,255,0.5); transform: translateX(4px); }
+  .pub-idx { font-size: 22px; font-weight: 800; color: rgba(255,255,255,0.18); min-width: 34px; }
+  .pub-body { flex: 1; }
+  .pub-title { font-weight: 600; font-size: 16px; line-height: 1.5; }
+  .pub-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .badge { font-size: 12px; padding: 4px 10px; border-radius: 7px; font-weight: 600; }
+  .b-venue { background: rgba(176,124,255,0.15); color: #cbb0ff; border: 1px solid rgba(176,124,255,0.3); }
+  .b-role { background: rgba(68,215,196,0.13); color: #7df0e0; border: 1px solid rgba(68,215,196,0.3); }
+  .b-rank { background: rgba(255,193,94,0.13); color: #ffce8a; border: 1px solid rgba(255,193,94,0.3); }
+  .b-topic { background: rgba(255,255,255,0.06); color: var(--muted); border: 1px solid var(--card-border); }
+
+  /* Projects */
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .proj-role { font-size: 12px; color: var(--accent-2); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  .proj h3 { font-size: 18px; margin: 8px 0 10px; }
+
+  /* Honors */
+  .honor-list { display: flex; flex-direction: column; gap: 14px; }
+  .honor { display: flex; gap: 14px; align-items: flex-start; }
+  .honor .dot { color: var(--accent-2); font-size: 18px; line-height: 1.7; }
+  .honor p { color: var(--muted); font-size: 15px; }
+  .honor b { color: var(--text); font-weight: 600; }
+
+  /* Contact */
+  .contact-card { text-align: center; padding: 50px 26px; }
+  .contact-card h2 { font-size: 30px; margin-bottom: 12px; }
+  .contact-card p { color: var(--muted); margin-bottom: 26px; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+  .contact-links a { display: inline-flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--card-border); padding: 12px 20px; border-radius: 12px; color: var(--text); font-size: 15px; transition: all 0.2s; }
+  .contact-links a:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  footer { text-align: center; padding: 36px 0; color: var(--muted); font-size: 13px; border-top: 1px solid var(--card-border); }
+
+  /* Reveal animation */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Responsive */
+  @media (max-width: 880px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .avatar-wrap { order: -1; }
+    .hero-tags, .cta-row { justify-content: center; }
+    h1 { font-size: 40px; }
+    .grid-3, .grid-2, .skill-grid { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--bg-soft); padding: 16px 24px; gap: 16px; border-bottom: 1px solid var(--card-border); }
+    .nav-links.open { display: flex; }
+    .menu-btn { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-orbs">
+  <div class="orb a"></div>
+  <div class="orb b"></div>
+  <div class="orb c"></div>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand">李雪涛<span>.</span></div>
+    <button class="menu-btn" aria-label="menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+    <div class="nav-links" id="navlinks">
+      <a href="#about">核心优势</a>
+      <a href="#education">教育背景</a>
+      <a href="#skills">研究与技能</a>
+      <a href="#publications">学术成果</a>
+      <a href="#projects">项目与竞赛</a>
+      <a href="#honors">荣誉</a>
+      <a href="#contact">联系</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="hero-grid">
+    <div>
+      <span class="eyebrow"><span class="pulse"></span>博士在读 · 求职意向：VLA / 具身智能机器人算法工程师</span>
+      <h1>你好，我是 <span class="grad">李雪涛</span></h1>
+      <p class="subtitle">武汉大学计算机学院 · 电子信息（具身智能）博士在读。专注于<b>多模态大模型</b>、<b>具身智能</b>与<b>视觉-语言-动作(VLA)</b>人形机器人操作研究。</p>
+      <div class="hero-tags">
+        <span class="tag">多模态大模型 / VLA</span>
+        <span class="tag">具身智能体规划决策</span>
+        <span class="tag">视觉理解与感知</span>
+        <span class="tag">人形机器人上肢操作</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#publications">📄 查看学术成果</a>
+        <a class="btn btn-ghost" href="mailto:xtli312@whu.edu.cn">✉ 联系我</a>
+      </div>
+    </div>
+    <div class="avatar-wrap">
+      <div class="avatar">李</div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num">9+</div><div class="lbl">一作/共一顶会顶刊</div></div>
+    <div class="stat"><div class="num">5×</div><div class="lbl">国际具身赛事冠/季军</div></div>
+    <div class="stat"><div class="num">2</div><div class="lbl">省级/校企重点项目负责人</div></div>
+    <div class="stat"><div class="num">1+1</div><div class="lbl">发明专利 + 软著</div></div>
+  </div>
+</header>
+
+<section id="about" class="wrap reveal">
+  <div class="sec-head">
+    <div class="sec-tag">Highlights</div>
+    <h2 class="sec-title">核心优势</h2>
+    <p class="sec-sub">具备完整的「文献调研 — 算法设计 — 实验验证 — 论文/专利产出」闭环能力。</p>
+  </div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="hl-icon">🎓</div>
+      <h3>学术产出强</h3>
+      <p>多模态大模型方向一作/共一发表 AAAI、ICML、RSS、ICRA、IEEE THMS 等顶会顶刊论文 9 篇（含 TPAMI、TIP 在投各 1 篇）。</p>
+    </div>
+    <div class="card">
+      <div class="hl-icon">🤖</div>
+      <h3>研究方向聚焦</h3>
+      <p>长期深耕 VLA / 多模态大模型、视觉理解与具身智能体规划决策，覆盖视觉感知、人形机器人上肢操作、Agent 规划决策三大方向。</p>
+    </div>
+    <div class="card">
+      <div class="hl-icon">🚀</div>
+      <h3>工程能落地</h3>
+      <p>CVPR 2024 / 2023 ManiSkill 国际具身挑战赛多项冠军、ICRA 2025 季军；主导华为—武大人形机器人项目落地，成果获人民日报、凤凰卫视报道。</p>
+    </div>
+  </div>
+</section>
+
+<section id="education" class="wrap reveal">
+  <div class="sec-head">
+    <div class="sec-tag">Education</div>
+    <h2 class="sec-title">教育背景</h2>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-when">2024.09 – 至今 · 博士在读</div>
+      <div class="tl-title">武汉大学 · 计算机学院 · 电子信息（具身智能）博士</div>
+      <div class="tl-org">机器人学习算法与软操作实验室 (LASM)</div>
+      <div class="tl-desc">研究方向：视觉语言大模型 (VLA)、多模态大模型与机械臂视觉-语音操作。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-when">2021.09 – 2024.09 · 硕士</div>
+      <div class="tl-title">广西大学 · 电气工程学院 · 电子信息（人工智能）硕士</div>
+      <div class="tl-org">广西电力装备智能控制与运维重点实验室（机器人带电作业/视觉方向）</div>
+      <div class="tl-desc">绩点 3.69，年级排名 2/77。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-when">2012.09 – 2016.06 · 学士</div>
+      <div class="tl-title">中国民航大学 · 自动化学院 · 电子信息工程（CDIO 试点班）学士</div>
+      <div class="tl-org">绩点 3.43</div>
+      <div class="tl-desc">英语 CET-6 519，雅思口语 6.5，可流畅阅读与撰写英文学术论文。</div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="wrap reveal">
+  <div class="sec-head">
+    <div class="sec-tag">Research & Skills</div>
+    <h2 class="sec-title">研究方向与核心技能</h2>
+  </div>
+  <div class="skill-grid">
+    <div class="card skill-block">
+      <h4>🧠 多模态大模型</h4>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:14px;">熟悉 VLM/MLLM/VLA 的微调、对齐与推理部署流程，掌握图文-动作多模态表征、指令微调与跨场景泛化方法。</p>
+      <div class="chips"><span class="chip">VLM/MLLM</span><span class="chip">VLA</span><span class="chip">指令微调</span><span class="chip">对齐</span><span class="chip">推理部署</span></div>
+    </div>
+    <div class="card skill-block">
+      <h4>👁 视觉理解与感知</h4>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:14px;">目标检测、语义分割、视觉跟踪、3D 点云与视觉 Token / 自注意力表征学习，具备图文推理与视觉问答研究经验。</p>
+      <div class="chips"><span class="chip">目标检测</span><span class="chip">语义分割</span><span class="chip">3D 点云</span><span class="chip">视觉跟踪</span><span class="chip">VQA</span></div>
+    </div>
+    <div class="card skill-block">
+      <h4>🧭 智能体规划决策</h4>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:14px;">具身智能体多步操作规划与决策，模仿学习/强化学习策略、长程任务执行与策略安全（后门攻击防御）。</p>
+      <div class="chips"><span class="chip">模仿学习</span><span class="chip">强化学习</span><span class="chip">长程规划</span><span class="chip">策略安全</span></div>
+    </div>
+    <div class="card skill-block">
+      <h4>💻 编程与框架</h4>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:14px;">具备独立完成大规模实验与技术报告撰写的能力，熟悉多卡 GPU 服务器运维。</p>
+      <div class="chips"><span class="chip">Python（精通）</span><span class="chip">PyTorch（精通）</span><span class="chip">CUDA/Linux</span><span class="chip">多卡 GPU 运维</span><span class="chip">Java</span><span class="chip">数据库</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="publications" class="wrap reveal">
+  <div class="sec-head">
+    <div class="sec-tag">Publications</div>
+    <h2 class="sec-title">学术论文成果</h2>
+    <p class="sec-sub">第一作者 / 共同一作 / 通讯作者为主（9 篇），另有参与/合作论文 2 篇。</p>
+  </div>
+  <div class="pub-filters">
+    <button class="filter-btn active" data-filter="all">全部</button>
+    <button class="filter-btn" data-filter="first">一作/共一/通讯</button>
+    <button class="filter-btn" data-filter="co">参与/合作</button>
+  </div>
+  <div class="pub-list" id="pubList">
+    <div class="pub" data-type="first"><div class="pub-idx">01</div><div class="pub-body">
+      <div class="pub-title">RGMP: Recurrent Geometric-prior Multimodal Policy for Generalizable Humanoid Robot Manipulation</div>
+      <div class="pub-meta"><span class="badge b-venue">AAAI 2026 · CCF-A</span><span class="badge b-role">一作</span><span class="badge b-topic">多模态策略大模型 / VLA</span></div>
+    </div></div>
+    <div class="pub" data-type="first"><div class="pub-idx">02</div><div class="pub-body">
+      <div class="pub-title">Generalizable Geometric Prior and Recurrent Spiking Feature Learning for Humanoid Robot Manipulation</div>
+      <div class="pub-meta"><span class="badge b-venue">IEEE TPAMI（在投）· 中科院一区 TOP · IF 18.6</span><span class="badge b-role">一作</span><span class="badge b-topic">机器人时空大模型</span></div>
+    </div></div>
+    <div class="pub" data-type="first"><div class="pub-idx">03</div><div class="pub-body">
+      <div class="pub-title">Co-policy: Human-Robot Co-Creation for Musical Performances</div>
+      <div class="pub-meta"><span class="badge b-venue">IEEE TIP（在投）· 中科院一区 TOP · IF 13.7</span><span class="badge b-role">一作</span><span class="badge b-topic">多模态人机交互</span></div>
+    </div></div>
+    <div class="pub" data-type="first"><div class="pub-idx">04</div><div class="pub-body">
+      <div class="pub-title">When Attention Betrays: Erasing Backdoor Attacks in Robotic Policies by Reconstructing Visual Tokens</div>
+      <div class="pub-meta"><span class="badge b-venue">ICRA 2026 · CCF-B</span><span class="badge b-role">一作</span><span class="badge b-topic">多模态 Token 安全</span></div>
+    </div></div>
+    <div class="pub" data-type="first"><div class="pub-idx">05</div><div class="pub-body">
+      <div class="pub-title">A Two-stage Fine-tuning Strategy for Generalizable Manipulation Skill of Embodied AI</div>
+      <div class="pub-meta"><span class="badge b-venue">RSS 2023 · 机器人顶会/清华 A 类</span><span class="badge b-role">共一兼通讯</span><span class="badge b-topic">大模型微调</span></div>
+    </div></div>
+    <div class="pub" data-type="first"><div class="pub-idx">06</div><div class="pub-body">
+      <div class="pub-title">Guided Self-attention: Find the Generalized Necessarily Distinct Vectors for Grain Size Grading</div>
+      <div class="pub-meta"><span class="badge b-venue">IEEE THMS · 中科院二区 TOP</span><span class="badge b-role">共一</span><span class="badge b-topic">自注意力视觉理解</span></div>
+    </div></div>
+    <div class="pub" data-type="first"><div class="pub-idx">07</div><div class="pub-body">
+      <div class="pub-title">基于引导式触觉多模态大模型的人形机器人自适应灵巧操作策略</div>
+      <div class="pub-meta"><span class="badge b-venue">《中国科学：技术科学》· EI</span><span class="badge b-role">一作</span><span class="badge b-topic">触觉多模态大模型</span></div>
+    </div></div>
+    <div class="pub" data-type="first"><div class="pub-idx">08</div><div class="pub-body">
+      <div class="pub-title">基于运动与抓取感知的机器人灵巧柔性操作协同系统</div>
+      <div class="pub-meta"><span class="badge b-venue">《中国科学：技术科学》· EI</span><span class="badge b-role">一作</span><span class="badge b-topic">多模态数据采集</span></div>
+    </div></div>
+    <div class="pub" data-type="first"><div class="pub-idx">09</div><div class="pub-body">
+      <div class="pub-title">图像修复方法综述</div>
+      <div class="pub-meta"><span class="badge b-venue">《激光与光电子学进展》· 北大中文核心</span><span class="badge b-role">一作</span><span class="badge b-topic">文献调研与学术写作</span></div>
+    </div></div>
+    <div class="pub" data-type="co"><div class="pub-idx">10</div><div class="pub-body">
+      <div class="pub-title">Covariance Volume Maximization for Embodied Latent Exploration in Deep Reinforcement Learning</div>
+      <div class="pub-meta"><span class="badge b-venue">ICML 2026 · CCF-A</span><span class="badge b-role">共同作者</span><span class="badge b-topic">具身多模态策略 / 动作空间探索</span></div>
+    </div></div>
+    <div class="pub" data-type="co"><div class="pub-idx">11</div><div class="pub-body">
+      <div class="pub-title">Exploiting Vulnerabilities: Universal Adversarial Attacks on Vision-Language-Action Models in Robotics</div>
+      <div class="pub-meta"><span class="badge b-venue">ICRA 2026 · CCF-B</span><span class="badge b-role">共同作者</span><span class="badge b-topic">VLA 对抗攻击安全</span></div>
+    </div></div>
+  </div>
+</section>
+
+<section id="projects" class="wrap reveal">
+  <div class="sec-head">
+    <div class="sec-tag">Projects & Competitions</div>
+    <h2 class="sec-title">科研项目与竞赛</h2>
+  </div>
+  <div class="grid-2">
+    <div class="card proj">
+      <div class="proj-role">项目负责人</div>
+      <h3>华为—武汉大学 校企人形机器人项目</h3>
+      <p style="color:var(--muted);font-size:14px;">《基于 ROS2 的集成平台关键技术研究》。主导端到端具身大模型与多模态人机交互模块研发，支持多种具身形态与高效数据采集，长程任务操作成功率显著提升，可通过小样本训练实现高泛化性场景铺放。</p>
+    </div>
+    <div class="card proj">
+      <div class="proj-role">项目负责人</div>
+      <h3>湖北省武汉市重点研发项目</h3>
+      <p style="color:var(--muted);font-size:14px;">《高爆发多模态人形机器人研发与应用》。作为「天问」人形机器人主要研发人员，模型可在边缘端侧部署；机器人受邀出演 2025 湖北春晚并获人民日报、凤凰卫视等百家媒体报道，受省政府表彰。</p>
+    </div>
+    <div class="card proj">
+      <div class="proj-role">组长 / 多项冠军</div>
+      <h3>国际顶会具身智能挑战赛（ManiSkill 系列）</h3>
+      <p style="color:var(--muted);font-size:14px;">CVPR 2024 ManiSkill-ViTac 冠军、CVPR 2023 具身智能挑战赛模仿/强化学习等多赛道冠军、ICRA 2025 ManiSkill-ViTac2 季军；以冠军身份受邀于 RSS 2023（韩国大邱）作口头报告。</p>
+    </div>
+    <div class="card proj">
+      <div class="proj-role">组长</div>
+      <h3>数学建模与人工智能竞赛</h3>
+      <p style="color:var(--muted);font-size:14px;">华为杯全国研究生数学建模二等奖、中国研究生数学建模三等奖、华为中国-东盟数字创新大赛优胜奖等。</p>
+    </div>
+  </div>
+  <div class="grid-2" style="margin-top:20px;">
+    <div class="card">
+      <div class="proj-role">发明专利</div>
+      <h3 style="font-size:16px;margin:8px 0;">一种基于引导式自注意力机制的钢铁晶粒度定级方法</h3>
+      <p style="color:var(--muted);font-size:14px;">专利号 202310038495.6</p>
+    </div>
+    <div class="card">
+      <div class="proj-role">软件著作权</div>
+      <h3 style="font-size:16px;margin:8px 0;">基于动态图卷积的 3D 点云分类系统</h3>
+      <p style="color:var(--muted);font-size:14px;">登记号 2023SR0134168</p>
+    </div>
+  </div>
+</section>
+
+<section id="honors" class="wrap reveal">
+  <div class="sec-head">
+    <div class="sec-tag">Honors & Activities</div>
+    <h2 class="sec-title">荣誉奖励与学术活动</h2>
+  </div>
+  <div class="card">
+    <div class="honor-list">
+      <div class="honor"><span class="dot">◆</span><p><b>奖学金：</b>2022、2023 年硕士研究生学业奖学金一等奖；连续获评优秀学生（学术科技类 / 技能竞赛类）。</p></div>
+      <div class="honor"><span class="dot">◆</span><p><b>学术交流：</b>2023 年赴浙江大学学术访问；2023 年以 ManiSkill 挑战赛冠军身份赴韩国大邱 RSS 国际顶会作口头汇报（人民日报、广西大学官网等报道）。</p></div>
+      <div class="honor"><span class="dot">◆</span><p><b>媒体报道：</b>ManiSkill-ViTac 2024 全球机器人领域权威竞赛获人民网宣传报道；「天问」机器人获人民日报、凤凰卫视等百家媒体报道。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="wrap reveal">
+  <div class="card contact-card">
+    <h2>欢迎交流与合作</h2>
+    <p>专注多模态大模型 · 具身智能 · VLA 机器人算法，期待与您一起推动具身智能落地。</p>
+    <div class="contact-links">
+      <a href="mailto:xtli312@whu.edu.cn">✉ xtli312@whu.edu.cn</a>
+      <a href="tel:15549049607">📱 155-4904-9607</a>
+      <a href="#">🏛 武汉大学 · 计算机学院 LASM</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 李雪涛 · 多模态大模型 / 具身智能 / VLA 机器人算法 · 中共党员
+</footer>
+
+<script>
+  // Mobile nav close on click
+  document.querySelectorAll('#navlinks a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navlinks').classList.remove('open'));
+  });
+
+  // Publication filter
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('#pubList .pub').forEach(p => {
+        p.style.display = (f === 'all' || p.dataset.type === f) ? 'flex' : 'none';
+      });
+    });
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
