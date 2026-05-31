@@ -207,6 +207,32 @@
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
+  /* Portfolio card wall */
+  .pf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .pf-card { position: relative; overflow: hidden; padding: 0; display: flex; flex-direction: column; }
+  .pf-visual { height: 150px; position: relative; display: grid; place-items: center; overflow: hidden; }
+  .pf-visual::before { content: ""; position: absolute; inset: 0; opacity: 0.92; }
+  .pf-1 .pf-visual::before { background: linear-gradient(135deg, #3b54d6, #6c8cff); }
+  .pf-2 .pf-visual::before { background: linear-gradient(135deg, #1c8d7e, #44d7c4); }
+  .pf-3 .pf-visual::before { background: linear-gradient(135deg, #7a45c9, #b07cff); }
+  .pf-emoji { position: relative; font-size: 54px; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.3)); }
+  .pf-tagline { position: absolute; left: 16px; bottom: 12px; z-index: 2; color: #fff; font-weight: 700; font-size: 15px; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+  .pf-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+  .pf-body h3 { font-size: 17px; margin-bottom: 6px; }
+  .pf-body .pf-solve { font-size: 13px; color: var(--accent-2); font-weight: 600; margin-bottom: 10px; }
+  .pf-body p { color: var(--muted); font-size: 14px; flex: 1; }
+  .pf-metrics { display: flex; gap: 14px; margin-top: 14px; flex-wrap: wrap; }
+  .pf-metric { text-align: center; }
+  .pf-metric .m-num { font-size: 20px; font-weight: 800; color: var(--accent); }
+  .pf-metric .m-lab { font-size: 11px; color: var(--muted); }
+  /* Case strip */
+  .case-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+  .case { display: flex; gap: 14px; align-items: center; padding: 18px; background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; transition: transform 0.2s, border-color 0.2s; }
+  .case:hover { transform: translateY(-3px); border-color: rgba(108,140,255,0.5); }
+  .case .c-ico { font-size: 30px; flex: none; }
+  .case h4 { font-size: 15px; margin-bottom: 3px; }
+  .case p { font-size: 12.5px; color: var(--muted); }
+
   /* Responsive */
   @media (max-width: 880px) {
     .hero-grid { grid-template-columns: 1fr; text-align: center; }
@@ -214,6 +240,7 @@
     .hero-tags, .cta-row { justify-content: center; }
     h1 { font-size: 40px; }
     .grid-3, .grid-2, .skill-grid { grid-template-columns: 1fr; }
+    .pf-grid, .case-strip { grid-template-columns: 1fr; }
     .stats { grid-template-columns: repeat(2, 1fr); }
     .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--bg-soft); padding: 16px 24px; gap: 16px; border-bottom: 1px solid var(--card-border); }
     .nav-links.open { display: flex; }
@@ -238,6 +265,7 @@
       <a href="#education">教育背景</a>
       <a href="#skills">研究与技能</a>
       <a href="#publications">学术成果</a>
+      <a href="#portfolio">作品集</a>
       <a href="#projects">项目与竞赛</a>
       <a href="#honors">荣誉</a>
       <a href="#contact">联系</a>
@@ -412,6 +440,60 @@
       <div class="pub-title">Exploiting Vulnerabilities: Universal Adversarial Attacks on Vision-Language-Action Models in Robotics</div>
       <div class="pub-meta"><span class="badge b-venue">ICRA 2026 · CCF-B</span><span class="badge b-role">共同作者</span><span class="badge b-topic">VLA 对抗攻击安全</span></div>
     </div></div>
+  </div>
+</section>
+
+<section id="portfolio" class="wrap reveal">
+  <div class="sec-head">
+    <div class="sec-tag">Portfolio</div>
+    <h2 class="sec-title">作品集 · 研究方向与落地</h2>
+    <p class="sec-sub">围绕「具身大模型」三大研究方向开展预研，并在人形机器人产品中完成落地验证。</p>
+  </div>
+  <div class="pf-grid">
+    <div class="card pf-card pf-1">
+      <div class="pf-visual"><span class="pf-emoji">🦾</span><span class="pf-tagline">端到端具身大模型</span></div>
+      <div class="pf-body">
+        <h3>研究方向一 · 端到端具身大模型</h3>
+        <div class="pf-solve">解决跨场景适应差</div>
+        <p>支持多种具身形态与高效数据采集流程，仅需少量样本即可泛化至新任务、新场景，长程任务场景操作成功率显著提升。</p>
+        <div class="pf-metrics">
+          <div class="pf-metric"><div class="m-num">多形态</div><div class="m-lab">具身本体支持</div></div>
+          <div class="pf-metric"><div class="m-num">小样本</div><div class="m-lab">跨场景泛化</div></div>
+          <div class="pf-metric"><div class="m-num">长程</div><div class="m-lab">任务高成功率</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card pf-card pf-2">
+      <div class="pf-visual"><span class="pf-emoji">🗣️</span><span class="pf-tagline">拟人人机交互模型</span></div>
+      <div class="pf-body">
+        <h3>研究方向二 · 拟人人机交互模型</h3>
+        <div class="pf-solve">解决亲和弱、交互差</div>
+        <p>为具身机器人量身定制多模态表达，部署能力卓越，边缘端侧设备即可执行，实现深层次自然交互。</p>
+        <div class="pf-metrics">
+          <div class="pf-metric"><div class="m-num">多模态</div><div class="m-lab">表达生成</div></div>
+          <div class="pf-metric"><div class="m-num">边缘端</div><div class="m-lab">端侧部署</div></div>
+          <div class="pf-metric"><div class="m-num">一作</div><div class="m-lab">团队负责人</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card pf-card pf-3">
+      <div class="pf-visual"><span class="pf-emoji">🖐️</span><span class="pf-tagline">柔性触觉灵巧手</span></div>
+      <div class="pf-body">
+        <h3>研究方向三 · 柔性触觉灵巧手</h3>
+        <div class="pf-solve">解决成本高、安全低</div>
+        <p>精巧结构设计 + TPU 柔性材质，相比同类刚性灵巧手在使用寿命、操作精细度与最大抓取力度上全面提升，全球首创刚柔耦合方案。</p>
+        <div class="pf-metrics">
+          <div class="pf-metric"><div class="m-num">刚柔耦合</div><div class="m-lab">全球首创</div></div>
+          <div class="pf-metric"><div class="m-num">TPU</div><div class="m-lab">柔性材质</div></div>
+          <div class="pf-metric"><div class="m-num">国际奖</div><div class="m-lab">顶级设计奖</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="case-strip">
+    <div class="case"><div class="c-ico">☕</div><div><h4>天问咖啡全自助制备</h4><p>具身大模型落地 · 武大樱顶咖啡店（2025.02）</p></div></div>
+    <div class="case"><div class="c-ico">🎭</div><div><h4>2025 湖北春晚首秀</h4><p>湖北第一台 · 首次「武汉话」深层次交互</p></div></div>
+    <div class="case"><div class="c-ico">🏆</div><div><h4>ManiSkill 国际赛冠军</h4><p>CVPR 2024/2023 多赛道冠军 · 人民网报道</p></div></div>
   </div>
 </section>
 
